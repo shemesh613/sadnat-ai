@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סדנת AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05060a;
+    --card:#0e1119;
+    --line:#1c2130;
+    --text:#f2f5fa;
+    --muted:#8a96ab;
+    --blue:#4aa3ff;
+    --purple:#a56bff;
+    --pink:#ff5db1;
+    --glow:0 0 60px -12px rgba(90,120,255,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Heebo',system-ui,'Segoe UI',Arial,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .neon{background:linear-gradient(100deg,var(--blue),var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* HERO */
+  .hero{text-align:center;padding:56px 0 40px;position:relative}
+  .hero img{
+    width:min(300px,74%);height:auto;display:block;margin:0 auto -14px;
+    mix-blend-mode:screen;               /* black background dissolves into the page */
+    -webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 44%, #000 52%, transparent 100%);
+    mask-image:radial-gradient(ellipse 62% 66% at 50% 44%, #000 52%, transparent 100%);
+    filter:saturate(1.12) contrast(1.03);
+  }
+  .hero h1{font-size:clamp(34px,8vw,56px);font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:14px}
+  .hero p{color:var(--muted);font-size:clamp(16px,2.4vw,19px);max-width:440px;margin:0 auto 26px}
+  .btn{
+    display:inline-block;padding:15px 34px;border-radius:14px;font-weight:800;font-size:17px;color:#fff;
+    background:linear-gradient(100deg,var(--blue),var(--purple));
+    box-shadow:0 14px 40px -12px rgba(90,120,255,.7);transition:transform .18s;
+  }
+  .btn:hover{transform:translateY(-2px)}
+
+  /* SECTION */
+  section{padding:44px 0}
+  h2{text-align:center;font-size:clamp(24px,5vw,32px);font-weight:800;margin-bottom:30px}
+  h2 .em{display:block;font-size:28px;margin-bottom:6px}
+
+  /* RECORDINGS */
+  .rec{
+    display:flex;align-items:center;gap:18px;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:14px;
+    transition:border-color .18s,transform .18s;
+  }
+  .rec:hover{border-color:rgba(90,120,255,.5);transform:translateY(-2px)}
+  .rec .n{flex:0 0 auto;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:20px;
+    background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
+  .rec .t{flex:1 1 auto;min-width:0}
+  .rec .t b{font-size:17px;font-weight:700;display:block}
+  .rec .t span{color:var(--muted);font-size:13px}
+  .rec a.play{flex:0 0 auto;background:rgba(90,120,255,.14);border:1px solid rgba(90,120,255,.4);
+    color:#bcd2ff;padding:10px 18px;border-radius:11px;font-weight:700;font-size:15px;transition:background .18s}
+  .rec a.play:hover{background:rgba(90,120,255,.28)}
+  .player{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:14px}
+  .player video,.player iframe{width:100%;border:0;border-radius:12px;display:block;background:#000;aspect-ratio:16/9}
+  .player .cap{color:var(--muted);font-size:14px;padding:12px 6px 4px;text-align:center}
+  .player .cap b{color:var(--text);font-weight:700}
+  .drive-btn{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;margin:16px auto 6px;padding:6px}
+  .drive-ic{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 46px -6px rgba(90,120,255,.85);
+    transition:transform .2s,box-shadow .2s}
+  .drive-ic svg{width:40px;height:40px;margin-inline-start:5px}
+  .drive-btn:hover .drive-ic{transform:scale(1.09);box-shadow:0 0 64px -4px rgba(120,90,255,1)}
+  .drive-btn span{font-weight:700;color:#cdd9ee;font-size:15px}
+  .rec.soon{opacity:.55}
+  .rec.soon .n{background:var(--line);color:var(--muted)}
+  .rec.soon .tag{color:var(--muted);font-size:13px;font-weight:600}
+
+  /* SUMMARY — simple list */
+  .steps{display:grid;gap:12px}
+  .step{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+  .step .e{font-size:26px;flex:0 0 auto}
+  .step p{font-size:16px}
+  .step p b{font-weight:700}
+  .free{
+    text-align:center;margin-top:22px;color:#bcd2ff;font-size:15px;
+    background:rgba(90,120,255,.08);border:1px solid rgba(90,120,255,.25);border-radius:14px;padding:16px 20px;
+    opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;
+  }
+  .free.show{opacity:1;transform:none}
+  /* game-quest typing effect */
+  .step p{min-height:1.55em}
+  .step p.type-on{text-shadow:0 0 12px rgba(90,120,255,.55)}
+  .step .cursor{display:inline-block;width:9px;height:1.05em;vertical-align:-2px;margin-inline-start:3px;
+    background:linear-gradient(var(--blue),var(--purple));border-radius:2px;
+    box-shadow:0 0 10px var(--blue);animation:blink .75s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .step.locked{opacity:.32;filter:saturate(.4)}
+  .step.locked .e{filter:grayscale(1)}
+
+  /* TOOLS — logo grid */
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+  .tool{
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 16px;
+    transition:transform .2s,border-color .2s,box-shadow .2s;
+  }
+  .tool:hover{transform:translateY(-5px);border-color:rgba(90,120,255,.55);box-shadow:var(--glow)}
+  .tool .logo{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:32px;font-weight:900;color:#fff;box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
+  .tool b{font-size:16px;font-weight:700}
+  .tool span{color:var(--muted);font-size:12.5px}
+
+  /* FOOTER */
+  footer{text-align:center;padding:40px 0 54px;border-top:1px solid var(--line);margin-top:20px}
+  footer b{font-size:17px}
+  footer .r{color:var(--muted);font-size:14px;margin:4px 0 14px}
+  footer .c{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="hero.jpg" alt="ילדים לומדים AI">
+    <h1><span class="neon">סדנת AI</span></h1>
+    <p>כל ההקלטות והכלים שלמדנו — במקום אחד, פשוט וברור.</p>
+    <a href="#rec" class="btn">▶️ להקלטות</a>
+  </div>
+
+  <!-- RECORDINGS -->
+  <section id="rec">
+    <h2><span class="em">🎬</span>הקלטות</h2>
+    <div class="player">
+      <a class="drive-btn" href="https://drive.google.com/file/d/15m9ZvzBwGIf5r_Lr7W6BVfHf7ZyvEpoN/view" target="_blank" rel="noopener">
+        <span class="drive-ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+        <span>צפייה בהקלטת השיעור ב-Google Drive</span>
+      </a>
+      <div class="cap"><b>שיעור 1 — מתחילים</b> · בנינו אתר ראשון · יולי 2026</div>
+    </div>
+    <div class="rec soon">
+      <div class="n">2</div>
+      <div class="t"><b>שיעור 2</b><span class="tag">יעודכן בקרוב</span></div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section>
+    <h2><span class="em">✨</span>מה למדנו</h2>
+    <div class="steps">
+      <div class="step"><span class="e">🌐</span><p>בנינו <b>אתר ראשון</b> בלי קוד עם <b>Claude · Gemini · ChatGPT</b> — רק מתארים מה רוצים.</p></div>
+      <div class="step"><span class="e">🎭</span><p>יצרנו <b>דמות מדברת</b> ב-HeyGen מתמונה + קול.</p></div>
+      <div class="step"><span class="e">🎙️</span><p>הפקנו <b>קול וקריינות</b> ב-Google AI Studio.</p></div>
+    </div>
+    <div class="free">💡 אפשר לבנות אתר גם ב-<b>Claude בחשבון החינמי</b> — פשוט קצת יותר לאט.</div>
+  </section>
+
+  <!-- TOOLS -->
+  <section>
+    <h2><span class="em">🧰</span>הכלים</h2>
+    <div class="tools">
+      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#d97757,#c96442)">C</div>
+        <b>Claude</b><span>עוזר AI</span>
+      </a>
+      <a class="tool" href="https://gemini.google.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#4285f4,#9b72f2)">✦</div>
+        <b>Gemini</b><span>עוזר AI · גוגל</span>
+      </a>
+      <a class="tool" href="https://chatgpt.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#10a37f,#1a7f64)">◍</div>
+        <b>ChatGPT</b><span>עוזר AI</span>
+      </a>
+      <a class="tool" href="https://www.heygen.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#7c5cff,#5b3fd6)">🎭</div>
+        <b>HeyGen</b><span>דמות מדברת</span>
+      </a>
+      <a class="tool" href="https://aistudio.google.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#f4b400,#e07b39)">🎙️</div>
+        <b>AI Studio</b><span>קול וקריינות</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <b>שמשון ג'יקוב</b>
+    <div class="r">מורה, מחנך ומדריך AI</div>
+    <div class="c">
+      <a href="mailto:shemesh613@gmail.com">✉️ shemesh613@gmail.com</a>
+      <a href="tel:0526953500">📞 052-695-3500</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var steps = Array.prototype.slice.call(document.querySelectorAll('#summary .step p'));
+  var freeNote = document.querySelector('#summary .free');
+  if(!steps.length) return;
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // stash original HTML, empty the paragraphs, lock rows
+  steps.forEach(function(p){
+    p.dataset.html = p.innerHTML;
+    p.innerHTML = '';
+    p.parentElement.classList.add('locked');
+  });
+
+  function typeEl(p, speed){
+    return new Promise(function(resolve){
+      var html = p.dataset.html, i = 0, out = '';
+      p.parentElement.classList.remove('locked');
+      p.classList.add('type-on');
+      (function tick(){
+        if(i >= html.length){ p.innerHTML = out; p.classList.remove('type-on'); resolve(); return; }
+        if(html[i] === '<'){ var j = html.indexOf('>', i); out += html.slice(i, j+1); i = j+1; return tick(); }
+        out += html[i]; i++;
+        p.innerHTML = out + '<span class="cursor"></span>';
+        setTimeout(tick, /\s/.test(html[i-1]) ? speed*0.5 : speed);
+      })();
+    });
+  }
+
+  function runAll(){
+    if(reduced){
+      steps.forEach(function(p){ p.innerHTML = p.dataset.html; p.parentElement.classList.remove('locked'); });
+      if(freeNote) freeNote.classList.add('show');
+      return;
+    }
+    var chain = Promise.resolve();
+    steps.forEach(function(p){ chain = chain.then(function(){ return typeEl(p, 26); }).then(function(){ return new Promise(function(r){ setTimeout(r, 260); }); }); });
+    chain.then(function(){ if(freeNote) freeNote.classList.add('show'); });
+  }
+
+  // start immediately when the page loads (not tied to scroll)
+  setTimeout(runAll, 400);
+})();
+</script>
+</body>
+</html>
