@@ -159,7 +159,7 @@
   </section>
 
   <!-- SUMMARY -->
-  <section>
+  <section id="summary">
     <h2><span class="em">✨</span>מה למדנו</h2>
     <div class="steps">
       <div class="step"><span class="e">🌐</span><p>בנינו <b>אתר ראשון</b> בלי קוד עם <b>Claude · Gemini · ChatGPT</b> — רק מתארים מה רוצים.</p></div>
@@ -215,9 +215,10 @@
 
 <script>
 (function(){
-  var steps = Array.prototype.slice.call(document.querySelectorAll('#summary .step p'));
-  var freeNote = document.querySelector('#summary .free');
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.steps .step p'));
   if(!steps.length) return;
+  var summarySec = steps[0].closest('section');
+  var freeNote = summarySec ? summarySec.querySelector('.free') : null;
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -261,8 +262,8 @@
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ trigger(); obs.disconnect(); } });
-    }, { threshold: 0.4 });
-    obs.observe(document.getElementById('summary'));
+    }, { threshold: 0.35 });
+    if(summarySec) obs.observe(summarySec); else trigger();
   } else {
     setTimeout(trigger, 400);
   }
