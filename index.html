@@ -243,8 +243,18 @@
     chain.then(function(){ if(freeNote) freeNote.classList.add('show'); });
   }
 
-  // start immediately when the page loads (not tied to scroll)
-  setTimeout(runAll, 400);
+  // play the typing exactly when the section scrolls into view (fires immediately if
+  // it's already visible on load) — so the effect is always actually seen.
+  var fired = false;
+  function trigger(){ if(fired) return; fired = true; runAll(); }
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); obs.disconnect(); } });
+    }, { threshold: 0.4 });
+    obs.observe(document.getElementById('summary'));
+  } else {
+    setTimeout(trigger, 400);
+  }
 })();
 </script>
 </body>
