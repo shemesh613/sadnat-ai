@@ -31,72 +31,53 @@
   .neon{background:linear-gradient(100deg,var(--blue),var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* HERO */
-  .hero{text-align:center;padding:56px 0 40px;position:relative}
+  .hero{text-align:center;padding:56px 0 40px}
   .hero img{
     width:min(300px,74%);height:auto;display:block;margin:0 auto -14px;
-    mix-blend-mode:screen;               /* black background dissolves into the page */
+    mix-blend-mode:screen;
     -webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 44%, #000 52%, transparent 100%);
     mask-image:radial-gradient(ellipse 62% 66% at 50% 44%, #000 52%, transparent 100%);
     filter:saturate(1.12) contrast(1.03);
   }
   .hero h1{font-size:clamp(34px,8vw,56px);font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:14px}
   .hero p{color:var(--muted);font-size:clamp(16px,2.4vw,19px);max-width:440px;margin:0 auto 26px}
-  .btn{
-    display:inline-block;padding:15px 34px;border-radius:14px;font-weight:800;font-size:17px;color:#fff;
+  .jump{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .jump a{padding:12px 26px;border-radius:12px;font-weight:800;font-size:16px;color:#fff;
     background:linear-gradient(100deg,var(--blue),var(--purple));
-    box-shadow:0 14px 40px -12px rgba(90,120,255,.7);transition:transform .18s;
-  }
-  .btn:hover{transform:translateY(-2px)}
+    box-shadow:0 12px 34px -12px rgba(90,120,255,.7);transition:transform .18s}
+  .jump a.alt{background:linear-gradient(100deg,var(--purple),var(--pink));box-shadow:0 12px 34px -12px rgba(255,93,177,.6)}
+  .jump a:hover{transform:translateY(-2px)}
 
-  /* SECTION */
-  section{padding:44px 0}
-  h2{text-align:center;font-size:clamp(24px,5vw,32px);font-weight:800;margin-bottom:30px}
-  h2 .em{display:block;font-size:28px;margin-bottom:6px}
-
-  /* RECORDINGS */
-  .rec{
-    display:flex;align-items:center;gap:18px;
-    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:14px;
-    transition:border-color .18s,transform .18s;
+  /* LESSON BLOCK — each lesson is its own clearly separated card */
+  .lesson-block{
+    background:var(--card);border:1px solid var(--line);border-radius:24px;
+    padding:30px 24px 32px;margin:34px 0;position:relative;overflow:hidden;
   }
-  .rec:hover{border-color:rgba(90,120,255,.5);transform:translateY(-2px)}
-  .rec .n{flex:0 0 auto;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:20px;
-    background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
-  .rec .t{flex:1 1 auto;min-width:0}
-  .rec .t b{font-size:17px;font-weight:700;display:block}
-  .rec .t span{color:var(--muted);font-size:13px}
-  .rec a.play{flex:0 0 auto;background:rgba(90,120,255,.14);border:1px solid rgba(90,120,255,.4);
-    color:#bcd2ff;padding:10px 18px;border-radius:11px;font-weight:700;font-size:15px;transition:background .18s}
-  .rec a.play:hover{background:rgba(90,120,255,.28)}
-  .player{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:14px}
-  .player video,.player iframe{width:100%;border:0;border-radius:12px;display:block;background:#000;aspect-ratio:16/9}
-  .player .cap{color:var(--muted);font-size:14px;padding:12px 6px 4px;text-align:center}
-  .player .cap b{color:var(--text);font-weight:700}
-  .drive-btn{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;margin:16px auto 6px;padding:6px}
-  .drive-ic{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;
-    background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 46px -6px rgba(90,120,255,.85);
-    transition:transform .2s,box-shadow .2s}
-  .drive-ic svg{width:40px;height:40px;margin-inline-start:5px}
+  .lesson-block::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--accent,linear-gradient(90deg,var(--blue),var(--purple)))}
+  .lesson-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .lnum{flex:0 0 auto;width:58px;height:58px;border-radius:17px;display:grid;place-items:center;
+    font-size:26px;font-weight:900;color:#fff;background:var(--accent,linear-gradient(135deg,var(--blue),var(--purple)));
+    box-shadow:0 0 30px -8px rgba(90,120,255,.8)}
+  .lesson-head h2{font-size:clamp(21px,4vw,27px);font-weight:800;letter-spacing:-.4px;line-height:1.2}
+  .ldate{color:var(--muted);font-size:14px}
+
+  /* DRIVE BUTTON */
+  .drive-btn{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;margin:6px auto 24px;padding:6px}
+  .drive-ic{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;
+    background:var(--accent,linear-gradient(135deg,var(--blue),var(--purple)));
+    box-shadow:0 0 46px -6px rgba(90,120,255,.85);transition:transform .2s,box-shadow .2s}
+  .drive-ic svg{width:38px;height:38px;margin-inline-start:5px}
   .drive-btn:hover .drive-ic{transform:scale(1.09);box-shadow:0 0 64px -4px rgba(120,90,255,1)}
-  .drive-btn span{font-weight:700;color:#cdd9ee;font-size:15px}
-  .rec.soon{opacity:.55}
-  .rec.soon .n{background:var(--line);color:var(--muted)}
-  .rec.soon .tag{color:var(--muted);font-size:13px;font-weight:600}
+  .drive-btn span.lbl{font-weight:700;color:#cdd9ee;font-size:15px}
 
-  /* SUMMARY — simple list */
-  .steps{display:grid;gap:12px}
-  .step{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
-  .step .e{font-size:26px;flex:0 0 auto}
-  .step p{font-size:16px}
+  /* WHAT WE LEARNED */
+  .learned-t{text-align:center;font-size:15px;font-weight:800;color:var(--muted);letter-spacing:1px;margin-bottom:14px}
+  .steps{display:grid;gap:11px}
+  .step{display:flex;align-items:center;gap:15px;background:rgba(255,255,255,.025);
+    border:1px solid var(--line);border-radius:15px;padding:14px 18px}
+  .step .e{font-size:24px;flex:0 0 auto}
+  .step p{font-size:15.5px;min-height:1.55em}
   .step p b{font-weight:700}
-  .free{
-    text-align:center;margin-top:22px;color:#bcd2ff;font-size:15px;
-    background:rgba(90,120,255,.08);border:1px solid rgba(90,120,255,.25);border-radius:14px;padding:16px 20px;
-    opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;
-  }
-  .free.show{opacity:1;transform:none}
-  /* game-quest typing effect */
-  .step p{min-height:1.55em}
   .step p.type-on{text-shadow:0 0 12px rgba(90,120,255,.55)}
   .step .cursor{display:inline-block;width:9px;height:1.05em;vertical-align:-2px;margin-inline-start:3px;
     background:linear-gradient(var(--blue),var(--purple));border-radius:2px;
@@ -104,18 +85,27 @@
   @keyframes blink{50%{opacity:0}}
   .step.locked{opacity:.32;filter:saturate(.4)}
   .step.locked .e{filter:grayscale(1)}
+  .free{margin-top:16px;text-align:center;color:#bcd2ff;font-size:14.5px;
+    background:rgba(90,120,255,.08);border:1px solid rgba(90,120,255,.25);border-radius:14px;padding:14px 18px;
+    opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+  .free.show{opacity:1;transform:none}
 
-  /* TOOLS — logo grid */
-  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-  .tool{
-    display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
-    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 16px;
-    transition:transform .2s,border-color .2s,box-shadow .2s;
-  }
+  /* TOOLS */
+  section.tools-sec{padding:44px 0}
+  h2.sec{text-align:center;font-size:clamp(24px,5vw,32px);font-weight:800;margin-bottom:8px}
+  h2.sec .em{display:block;font-size:28px;margin-bottom:6px}
+  .sec-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:28px}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:15px}
+  .tool{display:flex;flex-direction:column;align-items:center;text-align:center;gap:11px;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 14px;
+    transition:transform .2s,border-color .2s,box-shadow .2s}
   .tool:hover{transform:translateY(-5px);border-color:rgba(90,120,255,.55);box-shadow:var(--glow)}
-  .tool .logo{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:32px;font-weight:900;color:#fff;box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
-  .tool b{font-size:16px;font-weight:700}
-  .tool span{color:var(--muted);font-size:12.5px}
+  .tool .logo{width:60px;height:60px;border-radius:17px;display:grid;place-items:center;font-size:28px;font-weight:900;color:#fff;
+    box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
+  .tool b{font-size:15.5px;font-weight:700}
+  .tool span{color:var(--muted);font-size:12px}
+  .tool .badge-new{font-size:10px;font-weight:800;color:#0b1020;background:linear-gradient(100deg,var(--pink),var(--purple));
+    padding:2px 8px;border-radius:999px;letter-spacing:.5px}
 
   /* CLOSING */
   .closing{max-width:600px;margin:0 auto;text-align:center;font-size:17px;line-height:1.9;color:#dbe6f7;
@@ -124,7 +114,7 @@
   .closing b{color:#fff;font-weight:800}
 
   /* FOOTER */
-  footer{text-align:center;padding:40px 0 54px;border-top:1px solid var(--line);margin-top:20px}
+  footer{text-align:center;padding:40px 0 54px;border-top:1px solid var(--line);margin-top:34px}
   footer b{font-size:17px}
   footer .r{color:var(--muted);font-size:14px;margin:4px 0 14px}
   footer .c{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:14px}
@@ -139,28 +129,28 @@
     <img src="hero.jpg" alt="ילדים לומדים AI">
     <h1><span class="neon">סדנת AI</span></h1>
     <p>כל ההקלטות והכלים שלמדנו — במקום אחד, פשוט וברור.</p>
-    <a href="#rec" class="btn">▶️ להקלטות</a>
+    <div class="jump">
+      <a href="#lesson1">שיעור 1</a>
+      <a href="#lesson2" class="alt">שיעור 2</a>
+    </div>
   </div>
 
-  <!-- RECORDINGS -->
-  <section id="rec">
-    <h2><span class="em">🎬</span>הקלטות</h2>
-    <div class="player">
-      <a class="drive-btn" href="https://drive.google.com/file/d/15m9ZvzBwGIf5r_Lr7W6BVfHf7ZyvEpoN/view" target="_blank" rel="noopener">
-        <span class="drive-ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
-        <span>צפייה בהקלטת השיעור ב-Google Drive</span>
-      </a>
-      <div class="cap"><b>שיעור 1 — מתחילים</b> · בנינו אתר ראשון · יולי 2026</div>
+  <!-- ===== LESSON 1 ===== -->
+  <section class="lesson-block" id="lesson1" style="--accent:linear-gradient(135deg,#4aa3ff,#7c5cff)">
+    <div class="lesson-head">
+      <span class="lnum">1</span>
+      <div>
+        <h2>שיעור 1 — מתחילים</h2>
+        <span class="ldate">15 ביולי 2026 · כ־70 דקות</span>
+      </div>
     </div>
-    <div class="rec soon">
-      <div class="n">2</div>
-      <div class="t"><b>שיעור 2</b><span class="tag">יעודכן בקרוב</span></div>
-    </div>
-  </section>
 
-  <!-- SUMMARY -->
-  <section id="summary">
-    <h2><span class="em">✨</span>מה למדנו</h2>
+    <a class="drive-btn" href="https://drive.google.com/file/d/15m9ZvzBwGIf5r_Lr7W6BVfHf7ZyvEpoN/view" target="_blank" rel="noopener">
+      <span class="drive-ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="lbl">צפייה בהקלטת שיעור 1</span>
+    </a>
+
+    <div class="learned-t">✨ מה למדנו</div>
     <div class="steps">
       <div class="step"><span class="e">🌐</span><p>בנינו <b>אתר ראשון</b> בלי קוד עם <b>Claude · Gemini · ChatGPT</b> — רק מתארים מה רוצים.</p></div>
       <div class="step"><span class="e">🎭</span><p>יצרנו <b>דמות מדברת</b> ב-HeyGen מתמונה + קול.</p></div>
@@ -169,9 +159,36 @@
     <div class="free">💡 אפשר לבנות אתר גם ב-<b>Claude בחשבון החינמי</b> — פשוט קצת יותר לאט.</div>
   </section>
 
+  <!-- ===== LESSON 2 ===== -->
+  <section class="lesson-block" id="lesson2" style="--accent:linear-gradient(135deg,#a56bff,#ff5db1)">
+    <div class="lesson-head">
+      <span class="lnum">2</span>
+      <div>
+        <h2>שיעור 2 — מעמיקים</h2>
+        <span class="ldate">16 ביולי 2026 · כ־60 דקות</span>
+      </div>
+    </div>
+
+    <a class="drive-btn" href="https://drive.google.com/file/d/1BR8qLpMJsOfBYrcUahvia4efCg3mpkv4/view" target="_blank" rel="noopener">
+      <span class="drive-ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="lbl">צפייה בהקלטת שיעור 2</span>
+    </a>
+
+    <div class="learned-t">✨ מה למדנו</div>
+    <div class="steps">
+      <div class="step"><span class="e">🖼️</span><p>יצרנו <b>תמונות ב-Gemini</b> — מתארים ומקבלים.</p></div>
+      <div class="step"><span class="e">🎭</span><p>העמקנו בדמות המדברת — <b>HeyGen</b> וגם <b>Hedra</b>.</p></div>
+      <div class="step"><span class="e">🎙️</span><p>העמקנו ב<b>קריינות</b> ב-Google AI Studio.</p></div>
+      <div class="step"><span class="e">📸</span><p>טריק: <b>צילום מסך</b> (Print Screen) — מצלמים ושואלים את ה-AI.</p></div>
+      <div class="step"><span class="e">🎵</span><p>יצרנו <b>מוזיקה מקצועית ב-Suno</b> — כמה לחיצות ו-20 שניות.</p></div>
+    </div>
+    <div class="free">💡 כשאומרים "ג'מיני" — הכוונה גם ל-<b>ChatGPT</b> ול-<b>Claude</b>. שלושתם עושים את זה.</div>
+  </section>
+
   <!-- TOOLS -->
-  <section>
-    <h2><span class="em">🧰</span>הכלים</h2>
+  <section class="tools-sec">
+    <h2 class="sec"><span class="em">🧰</span>הכלים</h2>
+    <div class="sec-sub">לחיצה על כרטיס תיקח אתכם ישירות לכלי</div>
     <div class="tools">
       <a class="tool" href="https://claude.ai" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#d97757,#c96442)">C</div>
@@ -179,7 +196,7 @@
       </a>
       <a class="tool" href="https://gemini.google.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#4285f4,#9b72f2)">✦</div>
-        <b>Gemini</b><span>עוזר AI · גוגל</span>
+        <b>Gemini</b><span>עוזר AI + תמונות</span>
       </a>
       <a class="tool" href="https://chatgpt.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#10a37f,#1a7f64)">◍</div>
@@ -189,9 +206,17 @@
         <div class="logo" style="background:linear-gradient(135deg,#7c5cff,#5b3fd6)">🎭</div>
         <b>HeyGen</b><span>דמות מדברת</span>
       </a>
+      <a class="tool" href="https://www.hedra.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#ff5db1,#c2409a)">🎬</div>
+        <b>Hedra</b><span class="badge-new">חדש · שיעור 2</span>
+      </a>
       <a class="tool" href="https://aistudio.google.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#f4b400,#e07b39)">🎙️</div>
         <b>AI Studio</b><span>קול וקריינות</span>
+      </a>
+      <a class="tool" href="https://suno.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#00d6a3,#0a9e79)">🎵</div>
+        <b>Suno</b><span class="badge-new">חדש · שיעור 2</span>
       </a>
     </div>
   </section>
@@ -215,19 +240,9 @@
 
 <script>
 (function(){
-  var steps = Array.prototype.slice.call(document.querySelectorAll('.steps .step p'));
-  if(!steps.length) return;
-  var summarySec = steps[0].closest('section');
-  var freeNote = summarySec ? summarySec.querySelector('.free') : null;
-
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // stash original HTML, empty the paragraphs, lock rows
-  steps.forEach(function(p){
-    p.dataset.html = p.innerHTML;
-    p.innerHTML = '';
-    p.parentElement.classList.add('locked');
-  });
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.steps'));
+  if(!groups.length) return;
 
   function typeEl(p, speed){
     return new Promise(function(resolve){
@@ -244,29 +259,45 @@
     });
   }
 
-  function runAll(){
-    if(reduced){
-      steps.forEach(function(p){ p.innerHTML = p.dataset.html; p.parentElement.classList.remove('locked'); });
-      if(freeNote) freeNote.classList.add('show');
-      return;
-    }
-    var chain = Promise.resolve();
-    steps.forEach(function(p){ chain = chain.then(function(){ return typeEl(p, 26); }).then(function(){ return new Promise(function(r){ setTimeout(r, 260); }); }); });
-    chain.then(function(){ if(freeNote) freeNote.classList.add('show'); });
-  }
+  groups.forEach(function(group){
+    var steps = Array.prototype.slice.call(group.querySelectorAll('.step p'));
+    if(!steps.length) return;
+    var block = group.closest('.lesson-block');
+    var freeNote = block ? block.querySelector('.free') : null;
 
-  // play the typing exactly when the section scrolls into view (fires immediately if
-  // it's already visible on load) — so the effect is always actually seen.
-  var fired = false;
-  function trigger(){ if(fired) return; fired = true; runAll(); }
-  if('IntersectionObserver' in window){
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); obs.disconnect(); } });
-    }, { threshold: 0.35 });
-    if(summarySec) obs.observe(summarySec); else trigger();
-  } else {
-    setTimeout(trigger, 400);
-  }
+    steps.forEach(function(p){
+      p.dataset.html = p.innerHTML;
+      p.innerHTML = '';
+      p.parentElement.classList.add('locked');
+    });
+
+    function runAll(){
+      if(reduced){
+        steps.forEach(function(p){ p.innerHTML = p.dataset.html; p.parentElement.classList.remove('locked'); });
+        if(freeNote) freeNote.classList.add('show');
+        return;
+      }
+      var chain = Promise.resolve();
+      steps.forEach(function(p){
+        chain = chain.then(function(){ return typeEl(p, 24); })
+                     .then(function(){ return new Promise(function(r){ setTimeout(r, 230); }); });
+      });
+      chain.then(function(){ if(freeNote) freeNote.classList.add('show'); });
+    }
+
+    var fired = false;
+    function trigger(){ if(fired) return; fired = true; runAll(); }
+
+    var target = block || group;
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ trigger(); obs.disconnect(); } });
+      }, { threshold: 0.2 });
+      obs.observe(target);
+    } else {
+      trigger();
+    }
+  });
 })();
 </script>
 </body>
