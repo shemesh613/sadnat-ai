@@ -99,6 +99,9 @@
   h2.sec{text-align:center;font-size:clamp(24px,5vw,32px);font-weight:800;margin-bottom:8px}
   h2.sec .em{display:block;font-size:28px;margin-bottom:6px}
   .sec-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:28px}
+  .cat-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:30px 0 14px}
+  .cat-title .dot{width:11px;height:11px;border-radius:50%;background:var(--cc,var(--blue));box-shadow:0 0 12px var(--cc,var(--blue))}
+  .cat-title:first-of-type{margin-top:6px}
   .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:15px}
   .tool{display:flex;flex-direction:column;align-items:center;text-align:center;gap:11px;
     background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 14px;
@@ -107,9 +110,10 @@
   .tool .logo{width:60px;height:60px;border-radius:17px;display:grid;place-items:center;font-size:28px;font-weight:900;color:#fff;
     box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
   .tool b{font-size:15.5px;font-weight:700}
-  .tool span{color:var(--muted);font-size:12px}
+  .tool .does{color:#c3d0e2;font-size:13px;line-height:1.45;font-weight:500}
+  .tool .en{color:var(--muted);font-size:11px;letter-spacing:.3px;direction:ltr}
   .tool .badge-new{font-size:10px;font-weight:800;color:#0b1020;background:linear-gradient(100deg,var(--pink),var(--purple));
-    padding:2px 8px;border-radius:999px;letter-spacing:.5px}
+    padding:2px 8px;border-radius:999px;letter-spacing:.3px}
 
   /* CLOSING */
   .closing{max-width:600px;margin:0 auto;text-align:center;font-size:17px;line-height:1.9;color:#dbe6f7;
@@ -299,7 +303,7 @@
       <div class="step"><span class="e">🧱</span><p>גילינו <b>תבניות מוכנות</b> — מסמנים "יצירת תמונה" או "יצירת סרטון" ומתחילים.</p></div>
       <div class="step"><span class="e">🎬</span><p>עברנו ל-<b>Veo / Flow</b> (כלי הווידאו של גוגל) — יצירת סרטונים מרשימים.</p></div>
       <div class="step"><span class="e">🖼️</span><p><b>מתמונה לסרטון</b> — מעלים תמונה והיא הופכת לווידאו, וגם עם <b>פריימים</b> (התחלה וסוף).</p></div>
-      <div class="step"><span class="e">🕹️</span><p><b>העברת תנועה</b> — "תעשה את זה כמו שכלב עושה" — מעתיק תנועה לסרטון (במודל האחרון).</p></div>
+      <div class="step"><span class="e">🕹️</span><p><b>העברת תנועה</b> — אנחנו <b>עושים תנועות</b>, והסרטון מעתיק אותן לדמות ובמיקום אחרים לגמרי לפי ההוראות שלנו (במודל האחרון).</p></div>
       <div class="step"><span class="e">🪙</span><p>ראינו שיש <b>כמה מודלים</b> וכל אחד עולה מספר <b>קרדיטים</b> אחר.</p></div>
     </div>
     <div class="free">💡 את <b>Veo/Flow</b> אפשר לתרגל בבית ולהכין דברים משלכם — כמו שנועם כבר הכין ושיתף בשיעור! 🎉</div>
@@ -308,55 +312,73 @@
   <!-- TOOLS -->
   <section class="tools-sec">
     <h2 class="sec"><span class="em">🧰</span>הכלים</h2>
-    <div class="sec-sub">לחיצה על כרטיס תיקח אתכם ישירות לכלי</div>
+    <div class="sec-sub">כל כלי בקבוצה שלו — לוחצים על הכרטיס ונכנסים ישר לכלי</div>
+
+    <!-- עוזרים חכמים -->
+    <div class="cat-title" style="--cc:#4aa3ff"><span class="dot"></span>🤖 עוזרים חכמים — שואלים וכותבים</div>
     <div class="tools">
-      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#d97757,#c96442)">C</div>
-        <b>Claude</b><span>עוזר AI</span>
-      </a>
-      <a class="tool" href="https://claude.com/product/claude-code" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#1f2937,#4b5563)">💻</div>
-        <b>Claude Code</b><span class="badge-new">חדש · שיעור 3</span>
-      </a>
       <a class="tool" href="https://gemini.google.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#4285f4,#9b72f2)">✦</div>
-        <b>Gemini</b><span>עוזר AI + תמונות</span>
+        <b>Gemini</b><span class="does">עוזר גוגל — גם תמונות</span><span class="en">gemini.google.com</span>
+      </a>
+      <a class="tool" href="https://claude.ai" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#d97757,#c96442)">C</div>
+        <b>Claude</b><span class="does">עוזר לכתיבה ובנייה</span><span class="en">claude.ai</span>
       </a>
       <a class="tool" href="https://chatgpt.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#10a37f,#1a7f64)">◍</div>
-        <b>ChatGPT</b><span>עוזר AI</span>
+        <b>ChatGPT</b><span class="does">עוזר — מצוין בעברית</span><span class="en">chatgpt.com</span>
+      </a>
+      <a class="tool" href="https://claude.com/product/claude-code" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#1f2937,#4b5563)">💻</div>
+        <b>Claude Code</b><span class="does">בונה אתרים ומשחקים במחשב</span><span class="badge-new">שיעור 3</span>
+      </a>
+    </div>
+
+    <!-- מצגות וסיכום -->
+    <div class="cat-title" style="--cc:#2dd4bf"><span class="dot"></span>📊 מצגות, סיכום ולימוד</div>
+    <div class="tools">
+      <a class="tool" href="https://gamma.app" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#c084fc,#7c5cff)">📊</div>
+        <b>Gamma</b><span class="does">בונה מצגות יפות</span><span class="badge-new">שיעור 5</span>
       </a>
       <a class="tool" href="https://notebooklm.google.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#2dd4bf,#2f7fd4)">📓</div>
-        <b>NotebookLM</b><span class="badge-new">חדש · שיעור 4</span>
+        <b>NotebookLM</b><span class="does">מסכם חומר ועושה פודקאסט</span><span class="badge-new">שיעור 4</span>
       </a>
-      <a class="tool" href="https://gamma.app" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#c084fc,#7c5cff)">📊</div>
-        <b>Gamma</b><span class="badge-new">חדש · שיעור 5</span>
-      </a>
-      <a class="tool" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#fb7185,#f43f5e)">🎬</div>
-        <b>Veo / Flow</b><span class="badge-new">חדש · שיעור 6</span>
-      </a>
-      <a class="tool" href="https://www.heygen.com" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#7c5cff,#5b3fd6)">🎭</div>
-        <b>HeyGen</b><span>דמות מדברת</span>
-      </a>
-      <a class="tool" href="https://www.hedra.com" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#ff5db1,#c2409a)">🎬</div>
-        <b>Hedra</b><span class="badge-new">חדש · שיעור 2</span>
+    </div>
+
+    <!-- קול ומוזיקה -->
+    <div class="cat-title" style="--cc:#f4b400"><span class="dot"></span>🎵 קול, קריינות ומוזיקה</div>
+    <div class="tools">
+      <a class="tool" href="https://suno.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#00d6a3,#0a9e79)">🎵</div>
+        <b>Suno</b><span class="does">מחבר שירים ומוזיקה</span><span class="badge-new">שיעור 2</span>
       </a>
       <a class="tool" href="https://aistudio.google.com" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#f4b400,#e07b39)">🎙️</div>
-        <b>AI Studio</b><span>קול וקריינות</span>
-      </a>
-      <a class="tool" href="https://suno.com" target="_blank" rel="noopener">
-        <div class="logo" style="background:linear-gradient(135deg,#00d6a3,#0a9e79)">🎵</div>
-        <b>Suno</b><span class="badge-new">חדש · שיעור 2</span>
+        <b>AI Studio</b><span class="does">יוצר קול וקריינות</span><span class="en">aistudio.google.com</span>
       </a>
       <a class="tool" href="https://trumpaivoice.net" target="_blank" rel="noopener">
         <div class="logo" style="background:linear-gradient(135deg,#e0332f,#2b4c9b)">🎤</div>
-        <b>TrumpAiVoice</b><span class="badge-new">חדש · שיעור 2</span>
+        <b>TrumpAiVoice</b><span class="does">קריינות בקול טראמפ (אנגלית)</span><span class="badge-new">שיעור 2</span>
+      </a>
+    </div>
+
+    <!-- דמות מדברת וסרטונים -->
+    <div class="cat-title" style="--cc:#fb7185"><span class="dot"></span>🎬 דמות מדברת וסרטונים</div>
+    <div class="tools">
+      <a class="tool" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#fb7185,#f43f5e)">🎬</div>
+        <b>Veo / Flow</b><span class="does">יוצר סרטונים מתמונה</span><span class="badge-new">שיעור 6</span>
+      </a>
+      <a class="tool" href="https://www.heygen.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#7c5cff,#5b3fd6)">🎭</div>
+        <b>HeyGen</b><span class="does">דמות שמדברת מתמונה</span><span class="en">heygen.com</span>
+      </a>
+      <a class="tool" href="https://www.hedra.com" target="_blank" rel="noopener">
+        <div class="logo" style="background:linear-gradient(135deg,#ff5db1,#c2409a)">🎭</div>
+        <b>Hedra</b><span class="does">עוד דמות מדברת</span><span class="badge-new">שיעור 2</span>
       </a>
     </div>
   </section>
